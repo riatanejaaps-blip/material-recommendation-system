@@ -1,9 +1,9 @@
 # Smart Material Recommendation System
-# Core dependencies — versions pinned for reproducibility
+# Core dependencies — versions loosened to avoid platform-specific build issues
 
 streamlit>=1.38.0
 pandas>=2.2.2
 numpy>=1.26.4
 plotly>=5.22.0
 openpyxl>=3.1.2
-fpdf2>=2.7.9
+typing-extensions>=4.12.2
