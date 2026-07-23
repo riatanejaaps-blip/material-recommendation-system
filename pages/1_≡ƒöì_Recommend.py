@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 from data.materials_database import get_materials_dataframe
 from models.material import CorrosionEnvironment, ManufacturingProcess
 from utils.scoring import calculate_scores, PRIORITY_PRESETS, top_n
-from utils.export import export_to_excel, export_to_pdf
+from utils.export import export_to_excel
 
 st.set_page_config(page_title="Recommend | Material Recommender", page_icon="🔍", layout="wide")
 with open("assets/style.css") as f:
@@ -143,13 +143,7 @@ if "last_results" in st.session_state and len(st.session_state["last_results"]) 
 
     # ---- Export ----
     st.subheader("Export")
-    e1, e2 = st.columns(2)
-    with e1:
-        buf = io.BytesIO()
-        export_to_excel(results, buf)
-        st.download_button("⬇ Download as Excel", buf.getvalue(), "material_recommendations.xlsx",
-                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    with e2:
-        pdf_buf = io.BytesIO()
-        export_to_pdf(results, st.session_state["last_requirements"], pdf_buf)
-        st.download_button("⬇ Download as PDF", pdf_buf.getvalue(), "material_recommendations.pdf", "application/pdf")
+    buf = io.BytesIO()
+    export_to_excel(results, buf)
+    st.download_button("⬇ Download as Excel", buf.getvalue(), "material_recommendations.xlsx",
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
